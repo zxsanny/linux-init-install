@@ -3,9 +3,12 @@ sudo apt install xclip wget git -y
 sudo apt install dconf-editor -y
 
 #google chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb -y
-rm google-chrome-stable_current_amd64.deb -f
+if [ ! google-chrome>/dev/null; ] 
+then
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo apt install ./google-chrome-stable_current_amd64.deb -y
+	rm google-chrome-stable_current_amd64.deb -f
+fi
 
 #GO
 wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
@@ -21,4 +24,3 @@ make build
 sudo mv micro /usr/local/bin
 cd ..
 rm -rf micro
-
