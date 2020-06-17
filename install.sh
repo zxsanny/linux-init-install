@@ -11,21 +11,35 @@ then
 fi
 
 #GO
-wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
-echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bash_profile
-source ~/.bash_profile
-rm -rf go*
+if [ ! go>/dev/null; ]
+then
+	wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
+	sudo tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
+	echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bash_profile
+	source ~/.bash_profile
+	rm -rf go*
+fi
 
 #micro editor
-git clone https://github.com/zyedidia/micro
-cd micro
-make build
-sudo mv micro /usr/local/bin
-cd ..
-rm -rf micro
+if [ ! micro>/dev/null; ]
+then
+	git clone https://github.com/zyedidia/micro
+	cd micro
+	make build
+	sudo mv micro /usr/local/bin
+	cd ..
+	rm -rf micro
+fi
 
-# UI improvements
+#visual style changes
+wget https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/ubuntu-mate-settings/16.10.6/ubuntu-mate-settings_16.10.6.tar.xz
+tar -xf ubuntu-mate-settings_16.10.6.tar.xz
+sudo cp ubuntu-mate-settings/usr/share/mate-panel/ /usr/share/ -r
+rm -rf ubuntu*
+mate-panel --reset --layout redmond
 sudo apt-get install mate-applet-brisk-menu -y
 gsettings set org.mate.font-rendering dpi 120.0
 
+#rider
+sudo apt install snapd -y
+sudo snap install rider --classic --edge
