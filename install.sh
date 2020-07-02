@@ -1,7 +1,7 @@
-sudo apt install xclip wget git dconf-editor -y
+sudo apt install xclip wget dconf-editor -y
 
 #GO
-if [ ! go>/dev/null; ]
+if [ !go>/dev/null ];
 then
 	wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
 	sudo tar -C /usr/local -xzf go1.14.4.linux-amd64.tar.gz
@@ -11,7 +11,7 @@ then
 fi
 
 #micro editor
-if [ ! micro>/dev/null; ]
+if [ !micro>/dev/null ];
 then
 	git clone https://github.com/zyedidia/micro
 	cd micro
